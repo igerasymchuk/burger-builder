@@ -14,8 +14,9 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build1": "react-scripts build",
-    "build": "rm -r _static 2>/dev/null; react-scripts build && cp -ar build _static",
+    "build": "react-scripts build",
+    "build-do": "rm -r _static 2>/dev/null; react-scripts build && mv build _static",
+    "build-uni": "rm -r _static 2>/dev/null; react-scripts build && cp -ar build _static",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
