@@ -27,6 +27,7 @@ class Layout extends Component {
                 <main className={ classes.Content }>
                     {this.props.children}
                 </main>
+                <div style={{textAlign: 'center'}}>ver 0.1</div>
             </Aux>
         )
     }

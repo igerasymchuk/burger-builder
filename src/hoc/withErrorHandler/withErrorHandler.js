@@ -6,16 +6,22 @@ const withErrorHandler = (WrappedComponent, axios ) => {
     return (props) => {
         const [error, setError] = useState(null);
 
-        // Подібно до componentDidMount та componentDidUpdate:
         useEffect(() => {
-            axios.interceptors.request.use(req=> {
+            const reqInterceptor = axios.interceptors.request.use(req=> {
                 setError(null)
                 return req
             })
-            axios.interceptors.response.use(res => res, error => {
+            const resInterceptor =axios.interceptors.response.use(res => res, error => {
                 setError(error)
             })
+
+            return () => {
+                console.log('remove interceptors')
+                axios.interceptors.request.eject(reqInterceptor)
+                axios.interceptors.request.eject(resInterceptor)
+            }
         });
+
         return (
             <Aux>
                 <Modal show={error} modalClosed={()=>{setError(null)}}>
